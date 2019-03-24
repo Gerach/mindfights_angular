@@ -1,18 +1,33 @@
-# MindfightsApp2
+# Mindfights Electron
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
 
-## Development server
+## Getting started
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```$ git clone https://github.com/Gerach/mindfights-angular.git```
 
-## Code scaffolding
+### Prerequisites
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+In order to export this project you will need following packages installed on your machine:
 
-## Build
+```
+nodejs
+npm
+electron-packager
+winehq (for export to Windows only)
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Build for development
+
+Run `npm run electron-build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Build for production
+
+Run `npm run package-mac` to export this project for macOS.
+Run `npm run package-linux` to export this project for Linux based OS (x64 only).
+Run `npm run package-windows` to export this project for Windows 10 (x64 only).
+
+All exported files will be stored in `release-builds` directory.
 
 ## Running unit tests
 
@@ -22,6 +37,11 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+## Built With
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* [Electron](https://electronjs.org/) - Software Framework
+* [Angular CLI](https://github.com/angular/angular-cli) - MVW Framework
+
+## Authors
+
+* **Gerardas Martynovas** - *Initial work* - [Gerach](https://github.com/Gerach)
