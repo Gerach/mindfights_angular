@@ -1,6 +1,6 @@
 # Mindfights Electron
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
+Tool for creating and and casting mindfights
 
 ## Getting started
 
@@ -14,14 +14,14 @@ In order to export this project you will need following packages installed on yo
 nodejs
 npm
 electron-packager
-winehq (for export to Windows only)
+winehq (required only for export to Windows)
 ```
 
 ## Build for development
 
 Run `npm run electron-build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Build for production
+## Export for production
 
 Run `npm run package-mac` to export this project for macOS.  
 Run `npm run package-linux` to export this project for Linux based OS (x64 only).  
