@@ -23,8 +23,8 @@ Run `npm run electron-build` to build the project. The build artifacts will be s
 
 ## Build for production
 
-Run `npm run package-mac` to export this project for macOS.
-Run `npm run package-linux` to export this project for Linux based OS (x64 only).
+Run `npm run package-mac` to export this project for macOS.  
+Run `npm run package-linux` to export this project for Linux based OS (x64 only).  
 Run `npm run package-windows` to export this project for Windows 10 (x64 only).
 
 All exported files will be stored in `release-builds` directory.
