@@ -10,7 +10,7 @@ function createWindow () {
     backgroundColor: '#ffffff'
   });
 
-  win.loadURL(`file://${__dirname}/dist/` + appName + '/index.html');
+  win.loadURL(`file://${__dirname}/dist/${appName}/index.html`);
   win.webContents.openDevTools();
 
   win.on('closed', function () {
