@@ -7,14 +7,14 @@ function createWindow () {
   win = new BrowserWindow({
     width: 1000,
     height: 600,
-    backgroundColor: '#ffffff'
+    backgroundColor: '#262a30'
   });
 
   win.loadURL(`file://${__dirname}/dist/${appName}/index.html`);
   win.webContents.openDevTools();
 
   win.on('closed', function () {
-    win = null;
+    app.quit();
   })
 }
 

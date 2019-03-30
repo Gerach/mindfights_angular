@@ -7,6 +7,7 @@ import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { GamesComponent } from './games/games.component';
 import { GameComponent } from './game/game.component';
+import { NgxElectronModule } from 'ngx-electron';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { GameComponent } from './game/game.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxElectronModule
   ],
   providers: [],
   bootstrap: [AppComponent]

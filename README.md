@@ -41,6 +41,8 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 * [Electron](https://electronjs.org/) - Software Framework
 * [Angular CLI](https://github.com/angular/angular-cli) - MVW Framework
+* [Bootstrap 4](https://getbootstrap.com/) - Front-end style
+* [Slate theme](https://bootswatch.com/slate/) - Bootstrap custom theme
 
 ## Authors
 
