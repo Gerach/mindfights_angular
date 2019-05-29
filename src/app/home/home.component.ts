@@ -34,13 +34,11 @@ export class HomeComponent {
   }
 
   dbTest() {
-    const query = {
+    this.electronService.ipcRenderer.send(SELECT_QUERY, {
       game: 'test game',
       date_planned: new Date('2019-04-20'),
       location: 'MIF',
-    };
-
-    this.electronService.ipcRenderer.send(SELECT_QUERY, query);
+    });
     this.electronService.ipcRenderer.once(SELECT_QUERY, (event, data) => {
       this.setText(JSON.stringify(data[0]));
     });
