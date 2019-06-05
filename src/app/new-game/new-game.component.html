@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="page-header">
-    <h2>
-      Create new game
-    </h2>
-  </div>
-  <div class="col justify-content-md-center">
-    <div class="col col-lg-5">
+  <div class="container mt-3">
+    <div class="page-header col-sm-5">
+      <h2>
+        Create new game
+      </h2>
+    </div>
+    <div class="col-sm-5">
       <form (ngSubmit)="createNewGame(newGameName, newGameDate, newGameLocation)">
         <div class="form-group">
           <label for="newGameName">Name</label>
@@ -21,7 +21,7 @@
           <label for="newGameLocation">Location</label>
           <input id="newGameLocation" class="form-control" ngModel name="gameLocation" #newGameLocation="ngModel" type="text" placeholder="Enter location">
         </div>
-        <button class="btn btn-primary" [disabled]="!newGameName.valid || !newGameDate.valid">Create</button>
+        <button class="btn btn-primary mt-4" [disabled]="!newGameName.valid || !newGameDate.valid">Create</button>
       </form>
     </div>
   </div>
