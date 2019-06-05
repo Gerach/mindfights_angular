@@ -9,6 +9,7 @@ import { GamesComponent } from './games/games.component';
 import { GameComponent } from './game/game.component';
 import { NgxElectronModule } from 'ngx-electron';
 import { NewGameComponent } from './new-game/new-game.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NewGameComponent } from './new-game/new-game.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxElectronModule
+    NgxElectronModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,19 +6,23 @@
   </div>
   <div class="col justify-content-md-center">
     <div class="col col-lg-5">
-      <div class="form-group">
-        <label for="newGameName">Name</label>
-        <input id="newGameName" class="form-control" ng-model="form.name" type="text" placeholder="Enter name">
-      </div>
-      <div class="form-group">
-        <label for="newGameDate">Date</label>
-        <input id="newGameDate" class="form-control" ng-model="form.date" type="date">
-      </div>
-      <div class="form-group">
-        <label for="newGameLocation">Location</label>
-        <input id="newGameLocation" class="form-control" ng-model="form.location" type="text" placeholder="Enter location">
-      </div>
-      <button type="submit" class="btn btn-primary">Create</button>
+      <form (ngSubmit)="createNewGame(newGameName, newGameDate, newGameLocation)">
+        <div class="form-group">
+          <label for="newGameName">Name</label>
+          <input id="newGameName" class="form-control" required ngModel name="gameName" #newGameName="ngModel" type="text" placeholder="Enter name">
+          <div class="alert alert-danger" *ngIf="newGameName.touched && !newGameName.valid">Name is required.</div>
+        </div>
+        <div class="form-group">
+          <label for="newGameDate">Date</label>
+          <input id="newGameDate" class="form-control" required ngModel name="gameDate" #newGameDate="ngModel" type="date">
+          <div class="alert alert-danger" *ngIf="newGameDate.touched && !newGameDate.valid">Data is required.</div>
+        </div>
+        <div class="form-group">
+          <label for="newGameLocation">Location</label>
+          <input id="newGameLocation" class="form-control" ngModel name="gameLocation" #newGameLocation="ngModel" type="text" placeholder="Enter location">
+        </div>
+        <button class="btn btn-primary">Create</button>
+      </form>
     </div>
   </div>
 </div>
