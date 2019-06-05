@@ -44,10 +44,10 @@ app.on("activate", function() {
   }
 });
 
-ipcMain.on(SELECT_QUERY, (event, args) => {
+ipcMain.on(INSERT_QUERY, (event, args) => {
   db.insert(args, function(err, newDoc) {
     db.find({ game: "test game" }, function(err2, docs) {
-      win.send(SELECT_QUERY, docs);
+      win.send(INSERT_QUERY, docs);
     });
   });
 });

@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { ElectronService } from 'ngx-electron';
+
+const {
+  INSERT_QUERY,
+} = require('../../../constants.js');
 
 @Component({
   selector: 'app-new-game',
@@ -6,14 +11,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./new-game.component.css']
 })
 export class NewGameComponent {
-
-  constructor() {}
+  constructor(private electronService: ElectronService) { }
 
   createNewGame(name, date, location) {
-    console.log(name.value);
-    console.log(date.value);
-    console.log(location.value);
-    window.location.href = '';
+    if (name.valid && date.valid) {
+      this.electronService.ipcRenderer.send(INSERT_QUERY, {
+        type: 'game',
+        name: name.value,
+        date: new Date(date.value),
+        location: location.value,
+      });
+      window.location.href = '';
+    }
   }
-
 }

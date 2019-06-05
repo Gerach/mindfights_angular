@@ -21,7 +21,7 @@
           <label for="newGameLocation">Location</label>
           <input id="newGameLocation" class="form-control" ngModel name="gameLocation" #newGameLocation="ngModel" type="text" placeholder="Enter location">
         </div>
-        <button class="btn btn-primary">Create</button>
+        <button class="btn btn-primary" [disabled]="!newGameName.valid || !newGameDate.valid">Create</button>
       </form>
     </div>
   </div>
