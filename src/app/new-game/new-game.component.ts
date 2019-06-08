@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
+import { Router } from '@angular/router';
 
 const {
   INSERT_QUERY,
+  INSERT_QUERY_RESPONSE
 } = require('../../../constants.js');
 
 @Component({
@@ -11,7 +13,10 @@ const {
   styleUrls: ['./new-game.component.css']
 })
 export class NewGameComponent {
-  constructor(private electronService: ElectronService) { }
+  constructor(
+    private electronService: ElectronService,
+    public router: Router
+  ) { }
 
   createNewGame(name, date, location) {
     if (name.valid && date.valid) {
@@ -21,7 +26,9 @@ export class NewGameComponent {
         date: new Date(date.value),
         location: location.value,
       });
-      window.location.href = '';
+      this.electronService.ipcRenderer.once(INSERT_QUERY_RESPONSE, (event, data) => {
+        this.router.navigate(['game/' + data._id]);
+      });
     }
   }
 }

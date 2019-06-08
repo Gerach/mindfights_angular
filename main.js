@@ -7,6 +7,7 @@ const appName = "mindfights-app2";
 
 const {
   INSERT_QUERY,
+  INSERT_QUERY_RESPONSE,
   SELECT_QUERY,
 } = require("./constants.js");
 
@@ -46,8 +47,6 @@ app.on("activate", function() {
 
 ipcMain.on(INSERT_QUERY, (event, args) => {
   db.insert(args, function(err, newDoc) {
-    db.find({ game: "test game" }, function(err2, docs) {
-      win.send(INSERT_QUERY, docs);
-    });
+    win.send(INSERT_QUERY_RESPONSE, newDoc);
   });
 });
