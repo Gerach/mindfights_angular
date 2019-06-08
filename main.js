@@ -9,6 +9,7 @@ const {
   INSERT_QUERY,
   INSERT_QUERY_RESPONSE,
   SELECT_QUERY,
+  SELECT_QUERY_RESPONSE,
 } = require("./constants.js");
 
 let win;
@@ -48,5 +49,11 @@ app.on("activate", function() {
 ipcMain.on(INSERT_QUERY, (event, args) => {
   db.insert(args, function(err, newDoc) {
     win.send(INSERT_QUERY_RESPONSE, newDoc);
+  });
+});
+
+ipcMain.on(SELECT_QUERY, (event, args) => {
+  db.findOne(args, function(err, docs) {
+    win.send(SELECT_QUERY_RESPONSE, docs);
   });
 });

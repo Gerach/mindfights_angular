@@ -1,3 +1,28 @@
 <div class="container">
-  Game id: {{ gameId }}
+  <div class="container mt-3">
+    <div class="page-header col-sm-5">
+      <h2>
+        Edit Mindfight
+      </h2>
+    </div>
+    <div class="col-sm-5">
+      <form (ngSubmit)="editGame(gameName, gameDate, gameLocation)">
+        <div class="form-group">
+          <label for="mfName">Name</label>
+          <input id="mfName" class="form-control" required ngModel name="gameName" #gameName="ngModel" type="text" [placeholder]="gameNameValue">
+          <div class="alert alert-danger" *ngIf="gameName.touched && !gameName.valid">Name is required.</div>
+        </div>
+        <div class="form-group">
+          <label for="mfDate">Date</label>
+          <input id="mfDate" class="form-control" required [ngModel]="gameDateValue | date:'yyyy-MM-dd'" (ngModelChange)="gameDateValue = $event" name="gameDate" #gameDate="ngModel" type="date">
+          <div class="alert alert-danger" *ngIf="gameDate.touched && !gameDate.valid">Data is required.</div>
+        </div>
+        <div class="form-group">
+          <label for="mfLocation">Location</label>
+          <input id="mfLocation" class="form-control" ngModel name="gameLocation" #gameLocation="ngModel" type="text" [defaultValue]="gameLocationValue">
+        </div>
+        <button class="btn btn-success mt-4" [disabled]="!gameName.valid || !gameDate.valid">Save</button>
+      </form>
+    </div>
+  </div>
 </div>

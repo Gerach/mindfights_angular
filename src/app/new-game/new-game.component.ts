@@ -13,10 +13,14 @@ const {
   styleUrls: ['./new-game.component.css']
 })
 export class NewGameComponent {
+  currentDate: string;
+
   constructor(
     private electronService: ElectronService,
     public router: Router
-  ) { }
+  ) {
+    this.getCurrentDate();
+  }
 
   createNewGame(name, date, location) {
     if (name.valid && date.valid) {
@@ -30,5 +34,14 @@ export class NewGameComponent {
         this.router.navigate(['game/' + data._id]);
       });
     }
+  }
+
+  getCurrentDate(): void {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    this.currentDate = year + '-' + month + '-' + day;
   }
 }

@@ -8,18 +8,18 @@
     <div class="col-sm-5">
       <form (ngSubmit)="createNewGame(newGameName, newGameDate, newGameLocation)">
         <div class="form-group">
-          <label for="newGameName">Name</label>
-          <input id="newGameName" class="form-control" required ngModel name="gameName" #newGameName="ngModel" type="text" placeholder="Enter name">
+          <label for="newMfName">Name</label>
+          <input id="newMfName" class="form-control" required ngModel name="gameName" #newGameName="ngModel" type="text" placeholder="Enter name">
           <div class="alert alert-danger" *ngIf="newGameName.touched && !newGameName.valid">Name is required.</div>
         </div>
         <div class="form-group">
-          <label for="newGameDate">Date</label>
-          <input id="newGameDate" class="form-control" required ngModel name="gameDate" #newGameDate="ngModel" type="date">
+          <label for="newMfDate">Date</label>
+          <input id="newMfDate" class="form-control" required [ngModel]="currentDate | date:'yyyy-MM-dd'" (ngModelChange)="currentDate = $event" name="gameDate" #newGameDate="ngModel" type="date">
           <div class="alert alert-danger" *ngIf="newGameDate.touched && !newGameDate.valid">Data is required.</div>
         </div>
         <div class="form-group">
-          <label for="newGameLocation">Location</label>
-          <input id="newGameLocation" class="form-control" ngModel name="gameLocation" #newGameLocation="ngModel" type="text" placeholder="Enter location">
+          <label for="newMfLocation">Location</label>
+          <input id="newMfLocation" class="form-control" ngModel name="gameLocation" #newGameLocation="ngModel" type="text" placeholder="Enter location">
         </div>
         <button class="btn btn-success mt-4" [disabled]="!newGameName.valid || !newGameDate.valid">Create</button>
       </form>

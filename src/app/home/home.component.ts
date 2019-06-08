@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
 
-const {
-  SELECT_QUERY,
-} = require('../../../constants.js');
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,11 +8,7 @@ const {
 })
 
 export class HomeComponent {
-  text: string;
-
-  constructor(private electronService: ElectronService) {
-    this.text = 'Nothing';
-  }
+  constructor(private electronService: ElectronService) { }
 
   launchWindow() {
     if (this.electronService.isElectronApp) {
@@ -28,20 +20,6 @@ export class HomeComponent {
 
       newWindow.loadURL(`file://${__dirname}/dist/mindfights-app2/index.html`);
     }
-  }
-  setText(text) {
-    this.text = text;
-  }
-
-  dbTest() {
-    this.electronService.ipcRenderer.send(SELECT_QUERY, {
-      game: 'test game',
-      date_planned: new Date('2019-04-20'),
-      location: 'MIF',
-    });
-    this.electronService.ipcRenderer.once(SELECT_QUERY, (event, data) => {
-      this.setText(JSON.stringify(data[0]));
-    });
   }
 
 }
