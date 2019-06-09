@@ -20,10 +20,9 @@ let db = new Datastore({ filename: "./mindfights.db", autoload: true});
 function createWindow() {
   win = new BrowserWindow({
     backgroundColor: "#262a30",
-    height: 600,
-    width: 1000,
   });
 
+  win.maximize();
   win.loadURL(`file://${__dirname}/dist/${appName}/index.html`);
   win.webContents.openDevTools();
 

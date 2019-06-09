@@ -9,7 +9,7 @@
       <form (ngSubmit)="editGame(gameName, gameDate, gameLocation)">
         <div class="form-group">
           <label for="mfName">Name</label>
-          <input id="mfName" class="form-control" required ngModel name="gameName" #gameName="ngModel" type="text" [placeholder]="gameNameValue">
+          <input id="mfName" class="form-control" required [(ngModel)]="gameNameValue" name="gameName" #gameName="ngModel" type="text">
           <div class="alert alert-danger" *ngIf="gameName.touched && !gameName.valid">Name is required.</div>
         </div>
         <div class="form-group">
@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
           <label for="mfLocation">Location</label>
-          <input id="mfLocation" class="form-control" ngModel name="gameLocation" #gameLocation="ngModel" type="text" [defaultValue]="gameLocationValue">
+          <input id="mfLocation" class="form-control" [(ngModel)]="gameLocationValue" name="gameLocation" #gameLocation="ngModel" type="text" [value]="gameLocationValue">
         </div>
         <button class="btn btn-success mt-4" [disabled]="!gameName.valid || !gameDate.valid">Save</button>
       </form>

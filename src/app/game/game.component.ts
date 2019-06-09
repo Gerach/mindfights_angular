@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ElectronService } from 'ngx-electron';
-import { Router } from '@angular/router';
 
 const {
   INSERT_QUERY,
@@ -15,7 +14,7 @@ const {
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
-export class GameComponent implements OnInit {
+export class GameComponent implements OnInit{
   gameNameValue: string;
   gameDateValue: string;
   gameLocationValue: string;
@@ -23,21 +22,25 @@ export class GameComponent implements OnInit {
   constructor(
     private electronService: ElectronService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private ref: ChangeDetectorRef,
   ) {
-    this.getGame();
+    const gameId = this.route.snapshot.params.id;
+    this.getGame(gameId);
   }
 
-  ngOnInit() { }
+  ngOnInit(): void {
+  }
 
-  getGame(): void {
+  getGame(gameId): void {
     this.electronService.ipcRenderer.send(SELECT_QUERY, {
-      _id: this.route.snapshot.params.id
+      _id: gameId
     });
     this.electronService.ipcRenderer.once(SELECT_QUERY_RESPONSE, (event, data) => {
       this.gameNameValue = data.name;
       this.gameDateValue = data.date.split(/T/g)[0];
       this.gameLocationValue = data.location;
+      this.ref.detectChanges();
     });
   }
 
@@ -51,7 +54,7 @@ export class GameComponent implements OnInit {
         location: location.value,
       });
       this.electronService.ipcRenderer.once(INSERT_QUERY_RESPONSE, (event, data) => {
-        this.router.navigate(['games']);
+        this.router.navigate(['/games']);
       });
     }
   }
