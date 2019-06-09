@@ -9,7 +9,17 @@ import { GamesComponent } from './games/games.component';
 import { GameComponent } from './game/game.component';
 import { NgxElectronModule } from 'ngx-electron';
 import { NewGameComponent } from './new-game/new-game.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { MatInputModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material';
+import { MatChipsModule } from '@angular/material';
+import { MatNativeDateModule } from '@angular/material';
+import { MatDatepickerModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -24,9 +34,20 @@ import {FormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     NgxElectronModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

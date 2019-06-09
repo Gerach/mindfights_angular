@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 const {
   INSERT_QUERY,
@@ -13,39 +14,51 @@ const {
   styleUrls: ['./new-game.component.css']
 })
 export class NewGameComponent implements OnInit{
-  currentDate: string;
+  gameForm: FormGroup;
 
   constructor(
     private electronService: ElectronService,
-    private router: Router
-  ) {
-    this.getCurrentDate();
-  }
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
+    this.gameForm = this.formBuilder.group({
+      name: [
+        '', [
+          Validators.required,
+          Validators.minLength(5),
+        ]
+      ],
+      date: [
+        '', [
+          Validators.required,
+        ]
+      ],
+      location: ''
+    });
   }
 
-  createNewGame(name, date, location) {
-    if (!(name.valid && date.valid)) {
-      return;
-    }
+  get name() {
+    return this.gameForm.get('name');
+  }
+
+  get date() {
+    return this.gameForm.get('date');
+  }
+
+  get location() {
+    return this.gameForm.get('location');
+  }
+
+  createNewGame() {
     this.electronService.ipcRenderer.send(INSERT_QUERY, {
-      type: 'game',
-      name: name.value,
-      date: new Date(date.value),
-      location: location.value,
+      name: this.name.value,
+      date: this.date.value,
+      location: this.location.value,
     });
     this.electronService.ipcRenderer.once(INSERT_QUERY_RESPONSE, (event, data) => {
       this.router.navigate(['/game/', data._id]);
     });
-  }
-
-  getCurrentDate(): void {
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-
-    this.currentDate = year + '-' + month + '-' + day;
   }
 }

@@ -6,22 +6,32 @@
       </h2>
     </div>
     <div class="col-sm-5">
-      <form (ngSubmit)="createNewGame(newGameName, newGameDate, newGameLocation)">
-        <div class="form-group">
-          <label for="newMfName">Name</label>
-          <input id="newMfName" class="form-control" required ngModel name="gameName" #newGameName="ngModel" type="text" placeholder="Enter name">
-          <div class="alert alert-danger" *ngIf="newGameName.touched && !newGameName.valid">Name is required.</div>
-        </div>
-        <div class="form-group">
-          <label for="newMfDate">Date</label>
-          <input id="newMfDate" class="form-control" required [ngModel]="currentDate | date:'yyyy-MM-dd'" (ngModelChange)="currentDate = $event" name="gameDate" #newGameDate="ngModel" type="date">
-          <div class="alert alert-danger" *ngIf="newGameDate.touched && !newGameDate.valid">Data is required.</div>
-        </div>
-        <div class="form-group">
-          <label for="newMfLocation">Location</label>
-          <input id="newMfLocation" class="form-control" ngModel name="gameLocation" #newGameLocation="ngModel" type="text" placeholder="Enter location">
-        </div>
-        <button class="btn btn-success mt-4" [disabled]="!newGameName.valid || !newGameDate.valid">Create</button>
+      <form [formGroup]="gameForm" (ngSubmit)="createNewGame()">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+          <mat-error *ngIf="name.invalid && name.touched">
+            Name is invalid
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Date</mat-label>
+          <input matInput [matDatepicker]="gameDate" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="gameDate"></mat-datepicker-toggle>
+          <mat-datepicker #gameDate></mat-datepicker>
+          <mat-error *ngIf="date.invalid && date.touched">
+            Date is invalid
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Location</mat-label>
+          <input matInput formControlName="location">
+          <mat-error *ngIf="location.invalid && location.touched">
+            Location is invalid
+          </mat-error>
+        </mat-form-field>
+        <hr>
+        <button mat-raised-button [disabled]="gameForm.invalid" color="primary">Create</button>
       </form>
     </div>
   </div>
