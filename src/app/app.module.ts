@@ -13,13 +13,13 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MatInputModule } from '@angular/material';
-import { MatSelectModule } from '@angular/material';
-import { MatButtonModule } from '@angular/material';
-import { MatCheckboxModule } from '@angular/material';
-import { MatChipsModule } from '@angular/material';
-import { MatNativeDateModule } from '@angular/material';
-import { MatDatepickerModule } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
