@@ -10,12 +10,15 @@ const {
   INSERT_QUERY_RESPONSE,
   SELECT_QUERY,
   SELECT_QUERY_RESPONSE,
+  UPDATE_QUERY,
+  UPDATE_QUERY_RESPONSE
 } = require("./constants.js");
 
 let win;
 
 let Datastore = require("nedb");
 let db = new Datastore({ filename: "./mindfights.db", autoload: true});
+db.persistence.setAutocompactionInterval(5000);
 
 function createWindow() {
   win = new BrowserWindow({
@@ -47,12 +50,31 @@ app.on("activate", function() {
 
 ipcMain.on(INSERT_QUERY, (event, args) => {
   db.insert(args, function(err, newDoc) {
-    win.send(INSERT_QUERY_RESPONSE, newDoc);
+    if (newDoc) {
+      win.send(INSERT_QUERY_RESPONSE, newDoc);
+    } else {
+      win.send(INSERT_QUERY_RESPONSE, err);
+    }
   });
 });
 
 ipcMain.on(SELECT_QUERY, (event, args) => {
   db.findOne(args, function(err, docs) {
-    win.send(SELECT_QUERY_RESPONSE, docs);
+    if (docs) {
+      win.send(SELECT_QUERY_RESPONSE, docs);
+    } else {
+      win.send(SELECT_QUERY_RESPONSE, err);
+    }
+  });
+});
+
+ipcMain.on(UPDATE_QUERY, (event, args) => {
+  db.update({_id: args.id}, {$set: args.data}, {}, function(err, numReplaced) {
+    db.persistence.compactDatafile();
+    if (numReplaced) {
+      win.send(UPDATE_QUERY_RESPONSE, numReplaced);
+    } else {
+      win.send(UPDATE_QUERY_RESPONSE, err);
+    }
   });
 });

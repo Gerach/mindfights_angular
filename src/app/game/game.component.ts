@@ -4,10 +4,10 @@ import { ElectronService } from 'ngx-electron';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 const {
-  INSERT_QUERY,
-  INSERT_QUERY_RESPONSE,
   SELECT_QUERY,
-  SELECT_QUERY_RESPONSE
+  SELECT_QUERY_RESPONSE,
+  UPDATE_QUERY,
+  UPDATE_QUERY_RESPONSE
 } = require('../../../constants.js');
 
 @Component({
@@ -16,6 +16,7 @@ const {
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
+  gameId: string;
   gameEditForm: FormGroup;
 
   constructor(
@@ -25,8 +26,8 @@ export class GameComponent implements OnInit {
     private ref: ChangeDetectorRef,
     private formBuilder: FormBuilder
   ) {
-    const gameId = this.route.snapshot.params.id;
-    this.getGame(gameId);
+    this.gameId = this.route.snapshot.params.id;
+    this.getGame();
 
     this.gameEditForm = this.formBuilder.group({
       name: [
@@ -71,9 +72,9 @@ export class GameComponent implements OnInit {
     this.gameEditForm.get('location').setValue(value);
   }
 
-  getGame(gameId): void {
+  getGame(): void {
     this.electronService.ipcRenderer.send(SELECT_QUERY, {
-      _id: gameId
+      _id: this.gameId
     });
     this.electronService.ipcRenderer.once(SELECT_QUERY_RESPONSE, (event, data) => {
       this.name = data.name;
@@ -84,13 +85,18 @@ export class GameComponent implements OnInit {
   }
 
   editGame(): void {
-    this.electronService.ipcRenderer.send(INSERT_QUERY, {
-      name: this.name.value,
-      date: this.date.value,
-      location: this.location.value
+    this.electronService.ipcRenderer.send(UPDATE_QUERY, {
+      id: this.gameId,
+      data: {
+        name: this.name.value,
+        date: this.date.value,
+        location: this.location.value,
+        slides: {0: 'aaaa', 1: 'bbbb'}
+      }
     });
-    this.electronService.ipcRenderer.once(INSERT_QUERY_RESPONSE, (event, data) => {
-      this.router.navigate(['/games']);
+
+    this.electronService.ipcRenderer.once(UPDATE_QUERY_RESPONSE, (event, data) => {
+      console.log(data);
     });
   }
 
