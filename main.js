@@ -10,6 +10,8 @@ const {
   INSERT_QUERY_RESPONSE,
   SELECT_QUERY,
   SELECT_QUERY_RESPONSE,
+  SELECT_ALL_QUERY,
+  SELECT_ALL_RESPONSE,
   UPDATE_QUERY,
   UPDATE_QUERY_RESPONSE
 } = require("./constants.js");
@@ -64,6 +66,16 @@ ipcMain.on(SELECT_QUERY, (event, args) => {
       win.send(SELECT_QUERY_RESPONSE, docs);
     } else {
       win.send(SELECT_QUERY_RESPONSE, err);
+    }
+  });
+});
+
+ipcMain.on(SELECT_ALL_QUERY, (event, args) => {
+  db.find(args, function(err, docs) {
+    if (docs) {
+      win.send(SELECT_ALL_RESPONSE, docs);
+    } else {
+      win.send(SELECT_ALL_RESPONSE, err);
     }
   });
 });

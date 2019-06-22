@@ -20,6 +20,8 @@ import { MatCheckboxModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material';
 import { MatNativeDateModule } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material';
+import { MatTableModule } from '@angular/material';
+import { MatPaginatorModule } from '@angular/material';
 import { AboutComponent } from './about/about.component';
 
 @NgModule({
@@ -45,6 +47,8 @@ import { AboutComponent } from './about/about.component';
     MatCheckboxModule,
     MatChipsModule,
     MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
     MatDatepickerModule
   ],
   providers: [
