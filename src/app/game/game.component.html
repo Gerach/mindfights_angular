@@ -30,6 +30,29 @@
             Location is invalid
           </mat-error>
         </mat-form-field>
+
+        <div class="parameters-content">
+          <div class="parameter-option">
+            <button (click)="prev()">Prev</button>
+          </div>
+          <div class="parameter-option">
+            <button (click)="next()">Next</button>
+          </div>
+        </div>
+
+        <carousel-component [mode]="'horizontal'" [morePairSlides]="6" [angle]="15" #topCarousel>
+          <div class="item-carousel" *ngFor="let slide of slides">
+            {{ slide.question }}
+            {{ slide.time }}
+          </div>
+
+          <div class="item-carousel">
+            <button mat-icon-button matTooltip="Add new slide" (click)="editSlide()" class="iconbutton" color="accent">
+              <mat-icon aria-label="Add">note_add</mat-icon>
+            </button>
+          </div>
+        </carousel-component>
+
         <hr>
         <button mat-raised-button [disabled]="gameEditForm.invalid" color="primary">Save</button>
       </form>

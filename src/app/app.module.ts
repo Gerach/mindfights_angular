@@ -7,8 +7,10 @@ import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { GamesComponent } from './games/games.component';
 import { GameComponent } from './game/game.component';
-import { NgxElectronModule } from 'ngx-electron';
 import { NewGameComponent } from './new-game/new-game.component';
+import { AboutComponent } from './about/about.component';
+
+import { NgxElectronModule } from 'ngx-electron';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -24,7 +26,9 @@ import { MatTableModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 import { MatIconModule } from '@angular/material';
 import { MatTooltipModule } from '@angular/material';
-import { AboutComponent } from './about/about.component';
+
+import { CarouselModule } from 'ngx-carousel-lib';
+import { SlideComponent } from './slide/slide.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,8 @@ import { AboutComponent } from './about/about.component';
     GamesComponent,
     GameComponent,
     NewGameComponent,
-    AboutComponent
+    AboutComponent,
+    SlideComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,8 @@ import { AboutComponent } from './about/about.component';
     MatPaginatorModule,
     MatIconModule,
     MatTooltipModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    CarouselModule
   ],
   providers: [
     MatDatepickerModule,

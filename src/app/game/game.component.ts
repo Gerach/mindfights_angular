@@ -1,7 +1,8 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ElectronService } from 'ngx-electron';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CarouselComponent } from 'ngx-carousel-lib';
 
 const {
   SELECT_QUERY,
@@ -16,8 +17,9 @@ const {
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
-  gameId: string;
-  gameEditForm: FormGroup;
+  public gameId: string;
+  public gameEditForm: FormGroup;
+  public slides;
 
   constructor(
     private electronService: ElectronService,
@@ -27,7 +29,27 @@ export class GameComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.gameId = this.route.snapshot.params.id;
-    this.getGame();
+    this.slides = [
+      {
+        order: 0,
+        question: 'Klasimelis???',
+        image: 'path to image',
+        time: 60
+      },
+      {
+        order: 1,
+        question: 'Klasimelis 2???',
+        image: 'path to image',
+        time: 15
+      },
+      {
+        order: 2,
+        question: 'Klasimelis 3???',
+        image: 'path to image',
+        time: 30
+      },
+    ];
+    // this.getGame();
 
     this.gameEditForm = this.formBuilder.group({
       name: [
@@ -44,6 +66,8 @@ export class GameComponent implements OnInit {
       location: ''
     });
   }
+
+  @ViewChild('topCarousel') topCarousel: CarouselComponent;
 
   ngOnInit(): void {
   }
@@ -80,6 +104,7 @@ export class GameComponent implements OnInit {
       this.name = data.name;
       this.date = data.date;
       this.location = data.location;
+      this.slides = data.slides;
       this.ref.detectChanges();
     });
   }
@@ -98,6 +123,22 @@ export class GameComponent implements OnInit {
     this.electronService.ipcRenderer.once(UPDATE_QUERY_RESPONSE, (event, data) => {
       console.log(data);
     });
+  }
+
+  getSlidesForGame(): void {
+
+  }
+
+  editSlide(): void {
+    const id = 4;
+    this.router.navigate(['/slide/', id]);
+  }
+
+  prev() {
+    this.topCarousel.slidePrev();
+  }
+  next() {
+    this.topCarousel.slideNext();
   }
 
 }

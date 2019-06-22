@@ -13,7 +13,7 @@ const {
   templateUrl: './new-game.component.html',
   styleUrls: ['./new-game.component.css']
 })
-export class NewGameComponent implements OnInit{
+export class NewGameComponent implements OnInit {
   gameForm: FormGroup;
 
   constructor(
