@@ -113,11 +113,4 @@ export class GameComponent implements OnInit {
     this.router.navigate(['/slide/', this.gameId]);
   }
 
-  prev() {
-    this.topCarousel.slidePrev();
-  }
-  next() {
-    this.topCarousel.slideNext();
-  }
-
 }

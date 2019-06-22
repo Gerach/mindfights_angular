@@ -7,6 +7,8 @@
     </div>
     <div class="col-sm-5">
       <form [formGroup]="slideForm" (ngSubmit)="createNewSlide()">
+
+        <!-- Question input field -->
         <mat-form-field>
           <mat-label>Question</mat-label>
           <input matInput formControlName="question">
@@ -14,6 +16,9 @@
             Name is invalid
           </mat-error>
         </mat-form-field>
+        <br>
+
+        <!-- Time input field -->
         <mat-form-field>
           <mat-label>Time to answer</mat-label>
           <input matInput formControlName="time">
@@ -22,6 +27,11 @@
           </mat-error>
         </mat-form-field>
         <hr>
+
+        <p>
+          *Drag mouse across slides to navigate
+        </p>
+
         <button mat-raised-button [disabled]="slideForm.invalid" color="primary">Create</button>
       </form>
     </div>
