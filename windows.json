@@ -1,0 +1,7 @@
+{
+  "dest": "release-builds/installers/",
+  "tags": [
+    "Utility"
+  ],
+  "noMsi": true
+}

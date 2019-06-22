@@ -1,6 +1,12 @@
 {
-  "name": "mindfights-app2",
-  "version": "0.0.0",
+  "name": "Mindfights",
+  "version": "0.1.0",
+  "description": "Mindfights electron application",
+  "author": {
+    "name": "Gerardas Martynovas",
+    "email": "gerardas.martynovas@mif.stud.vu.lt",
+    "url": "https://github.com/Gerach/"
+  },
   "main": "main.js",
   "scripts": {
     "ng": "ng",
@@ -11,9 +17,12 @@
     "e2e": "ng e2e",
     "electron": "electron .",
     "electron-build": "ng build --prod && electron .",
-    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=release-builds",
-    "package-linux": "electron-packager . --overwrite --platform=linux --arch=x64 --prune=true --out=release-builds",
-    "package-windows": "electron-packager . --overwrite --platform=win32 --arch=x64 --prune=true --out=release-builds"
+    "package-mac": "electron-packager . Mindfights --overwrite --platform=darwin --arch=x64 --prune=true --out=release-builds --asar",
+    "package-linux": "electron-packager . Mindfights --overwrite --platform=linux --arch=x64 --prune=true --out=release-builds --asar",
+    "package-windows": "electron-packager . Mindfights --overwrite --platform=win32 --arch=x64 --prune=true --out=release-builds --asar",
+    "create-mac-installer": "electron-installer-dmg --src release-builds/Mindfights-darwin-x64/",
+    "create-linux-installer": "electron-installer-debian --src release-builds/Mindfights-linux-x64/ --arch amd64 --config debian.json",
+    "create-windows-installer": "electron-installer-windows --src release-builds/Mindfights-win32-x64/ --arch amd64 --config windows.json"
   },
   "private": true,
   "dependencies": {
@@ -48,7 +57,11 @@
     "codelyzer": "~4.5.0",
     "electron": "^4.1.1",
     "electron-builder": "^20.43.0",
+    "electron-installer-debian": "^2.0.0",
+    "electron-installer-dmg": "^3.0.0",
+    "electron-installer-windows": "^2.0.0",
     "electron-packager": "^13.1.1",
+    "electron-prebuilt": "^1.4.13",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.0.0",
@@ -56,6 +69,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "nuget": "^2.0.2",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
