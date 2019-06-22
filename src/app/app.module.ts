@@ -20,6 +20,7 @@ import { MatCheckboxModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material';
 import { MatNativeDateModule } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MatDatepickerModule } from '@angular/material';
     HomeComponent,
     GamesComponent,
     GameComponent,
-    NewGameComponent
+    NewGameComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
