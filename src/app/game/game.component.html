@@ -42,8 +42,12 @@
 
         <carousel-component [mode]="'horizontal'" [morePairSlides]="6" [angle]="15" #topCarousel>
           <div class="item-carousel" *ngFor="let slide of slides">
-            {{ slide.question }}
-            {{ slide.time }}
+            <p>
+              Question: {{ slide.question }}
+            </p>
+            <p>
+              Time to answer: {{ slide.time }} seconds
+            </p>
           </div>
 
           <div class="item-carousel">

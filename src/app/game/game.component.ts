@@ -19,7 +19,7 @@ const {
 export class GameComponent implements OnInit {
   public gameId: string;
   public gameEditForm: FormGroup;
-  public slides;
+  public slides: Array<string>;
 
   constructor(
     private electronService: ElectronService,
@@ -29,27 +29,9 @@ export class GameComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.gameId = this.route.snapshot.params.id;
-    this.slides = [
-      {
-        order: 0,
-        question: 'Klasimelis???',
-        image: 'path to image',
-        time: 60
-      },
-      {
-        order: 1,
-        question: 'Klasimelis 2???',
-        image: 'path to image',
-        time: 15
-      },
-      {
-        order: 2,
-        question: 'Klasimelis 3???',
-        image: 'path to image',
-        time: 30
-      },
-    ];
-    // this.getGame();
+    this.slides = [];
+
+    this.getGame();
 
     this.gameEditForm = this.formBuilder.group({
       name: [
@@ -104,7 +86,9 @@ export class GameComponent implements OnInit {
       this.name = data.name;
       this.date = data.date;
       this.location = data.location;
-      this.slides = data.slides;
+      if (data.slides) {
+        this.slides = data.slides;
+      }
       this.ref.detectChanges();
     });
   }
@@ -116,7 +100,7 @@ export class GameComponent implements OnInit {
         name: this.name.value,
         date: this.date.value,
         location: this.location.value,
-        slides: {0: 'aaaa', 1: 'bbbb'}
+        slides: []
       }
     });
 
@@ -125,13 +109,8 @@ export class GameComponent implements OnInit {
     });
   }
 
-  getSlidesForGame(): void {
-
-  }
-
   editSlide(): void {
-    const id = 4;
-    this.router.navigate(['/slide/', id]);
+    this.router.navigate(['/slide/', this.gameId]);
   }
 
   prev() {

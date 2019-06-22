@@ -56,7 +56,7 @@ export class NewGameComponent implements OnInit {
       name: this.name.value,
       date: this.date.value,
       location: this.location.value,
-      slides: {}
+      slides: []
     });
     this.electronService.ipcRenderer.once(INSERT_QUERY_RESPONSE, (event, data) => {
       this.router.navigate(['/game/', data._id]);

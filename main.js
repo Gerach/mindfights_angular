@@ -27,9 +27,11 @@ db.persistence.setAutocompactionInterval(5000);
 function createWindow() {
   win = new BrowserWindow({
     backgroundColor: "#262a30",
+    minWidth: 1280,
+    minHeight: 680,
+    maximizable: true
   });
 
-  win.maximize();
   win.loadURL(`file://${__dirname}/dist/${appName}/index.html`);
   win.webContents.openDevTools();
 
