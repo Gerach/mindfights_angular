@@ -5,8 +5,10 @@
         Create new game
       </h2>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-9">
       <form [formGroup]="gameForm" (ngSubmit)="createNewGame()">
+
+        <!-- Name input field -->
         <mat-form-field>
           <mat-label>Name</mat-label>
           <input matInput formControlName="name">
@@ -14,6 +16,9 @@
             Name is invalid
           </mat-error>
         </mat-form-field>
+        <br>
+
+        <!-- Date input field -->
         <mat-form-field>
           <mat-label>Date</mat-label>
           <input matInput [matDatepicker]="gameDate" formControlName="date">
@@ -23,6 +28,9 @@
             Date is invalid
           </mat-error>
         </mat-form-field>
+        <br>
+
+        <!-- Location input field -->
         <mat-form-field>
           <mat-label>Location</mat-label>
           <input matInput formControlName="location">

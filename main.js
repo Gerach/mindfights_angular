@@ -33,8 +33,6 @@ function createWindow() {
   });
 
   win.loadURL(`file://${__dirname}/dist/${appName}/index.html`);
-  win.webContents.openDevTools();
-
   win.on("closed", function() {
     app.quit();
   });
