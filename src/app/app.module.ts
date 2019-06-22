@@ -22,6 +22,8 @@ import { MatNativeDateModule } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material';
 import { MatTableModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
+import { MatIconModule } from '@angular/material';
+import { MatTooltipModule } from '@angular/material';
 import { AboutComponent } from './about/about.component';
 
 @NgModule({
@@ -49,6 +51,8 @@ import { AboutComponent } from './about/about.component';
     MatNativeDateModule,
     MatTableModule,
     MatPaginatorModule,
+    MatIconModule,
+    MatTooltipModule,
     MatDatepickerModule
   ],
   providers: [

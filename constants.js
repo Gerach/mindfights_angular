@@ -7,4 +7,6 @@ module.exports = {
   SELECT_ALL_RESPONSE: "select-all-response",
   UPDATE_QUERY: "update-query",
   UPDATE_QUERY_RESPONSE: "update-query-response",
+  DELETE_QUERY: "delete-query",
+  DELETE_QUERY_RESPONSE: "delete-query-response"
 };

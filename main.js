@@ -13,7 +13,9 @@ const {
   SELECT_ALL_QUERY,
   SELECT_ALL_RESPONSE,
   UPDATE_QUERY,
-  UPDATE_QUERY_RESPONSE
+  UPDATE_QUERY_RESPONSE,
+  DELETE_QUERY,
+  DELETE_QUERY_RESPONSE
 } = require("./constants.js");
 
 let win;
@@ -87,6 +89,16 @@ ipcMain.on(UPDATE_QUERY, (event, args) => {
       win.send(UPDATE_QUERY_RESPONSE, numReplaced);
     } else {
       win.send(UPDATE_QUERY_RESPONSE, err);
+    }
+  });
+});
+
+ipcMain.on(DELETE_QUERY, (event, args) => {
+  db.remove(args, function(err, numRemoved) {
+    if (numRemoved) {
+      win.send(DELETE_QUERY_RESPONSE, numRemoved);
+    } else {
+      win.send(DELETE_QUERY_RESPONSE, err);
     }
   });
 });
